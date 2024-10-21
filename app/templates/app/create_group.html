@@ -1,0 +1,28 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Create Campaign Group{% endblock %}
+
+{% block content %}
+<h2 style="margin-right: 30px;">Create a New Campaign Group</h2>
+
+<!-- Success and Error Messages -->
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    
+    <div>
+        {{ form.as_p }}
+    </div>
+
+    <button type="submit" class="btn btn-success">Create Group</button>
+</form>
+{% endblock %}

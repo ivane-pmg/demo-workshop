@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Feedback{% endblock %}
+
+{% block content %}
+<h2 style="margin-right: 30px;">We value your feedback</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="rating">Rate your experience:</label>
+    <select id="rating" name="rating" required>
+        <option value="1">1 - Poor</option>
+        <option value="2">2 - Fair</option>
+        <option value="3">3 - Good</option>
+        <option value="4">4 - Very Good</option>
+        <option value="5">5 - Excellent</option>
+    </select><br>
+
+    <label for="comments">Additional Comments:</label>
+    <textarea id="comments" name="comments"></textarea><br>
+    
+    <button type="submit">Submit Feedback</button>
+</form>
+
+{% if success_message %}
+<p>{{ success_message }}</p>
+{% endif %}
+{% endblock %}
