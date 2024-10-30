@@ -158,7 +158,7 @@ def feedback(request):
             return redirect('home')
     else:
         form = FeedbackForm()
-        feedbacks = Feedback.objecfits.filter(user=request.user) 
+        feedbacks = Feedback.objects.filter(user=request.user) 
 
     return render(request, 'app/feedback.html', {'form': form, 'feedbacks': feedbacks})
 
