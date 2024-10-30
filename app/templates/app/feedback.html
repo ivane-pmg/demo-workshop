@@ -3,6 +3,9 @@
 {% block title %}Feedback{% endblock %}
 
 {% block content %}
+{% for feedback in feedbacks %}
+    <div style="margin-right: 20px;">{{ feedback }}</div>
+{% endfor %}
 <h2 style="margin-right: 30px;">We value your feedback</h2>
 <form method="post">
     {% csrf_token %}

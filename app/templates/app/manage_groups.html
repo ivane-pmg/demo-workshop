@@ -5,17 +5,6 @@
 {% block content %}
 <h2>Your Campaign Groups</h2>
 
-<!-- Success and Error Messages -->
-{% if messages %}
-    <div class="messages">
-        {% for message in messages %}
-            <div class="alert {{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
-{% endif %}
-
 <!-- Table for displaying the campaign groups -->
 <table class="campaign-table">
     <thead>

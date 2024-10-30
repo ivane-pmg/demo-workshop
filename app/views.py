@@ -130,7 +130,6 @@ def assign_campaign(request, group_id):
     return render(request, 'app/assign_campaign.html', {'form': form, 'group': group, 'campaigns': campaigns})
 
 
-# View to delete a campaign group
 @login_required
 def delete_group(request, group_id):
     group = get_object_or_404(CampaignGroup, id=group_id, created_by=request.user)
@@ -140,7 +139,10 @@ def delete_group(request, group_id):
         messages.success(request, f'Group "{group.name}" deleted successfully.')
         return redirect('manage_groups')
 
-    return render(request, 'app/delete_group.html', {'group': group})
+    else:
+        group.delete()
+        messages.success(request, f'Group "{group.name}" deleted successfully.')
+        return redirect('manage_groups')
 
 
 # Feedback view
@@ -156,8 +158,9 @@ def feedback(request):
             return redirect('home')
     else:
         form = FeedbackForm()
+        feedbacks = Feedback.objecfits.filter(user=request.user) 
 
-    return render(request, 'app/feedback.html', {'form': form})
+    return render(request, 'app/feedback.html', {'form': form, 'feedbacks': feedbacks})
 
 @login_required
 def edit_group(request, group_id):
